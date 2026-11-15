@@ -93,6 +93,7 @@ Shows how the selected tables are connected to retrieve the required Purchase Or
 |2| PO Promised Date < Today | Identifies Purchase Orders with a Promised Date later than today, based on the configured business rule.|
 |3| PO Created By = Stores | Limits the inquiry to Purchase Orders created by stores, as the reminder is specifically intended for store-created POs. |
 |4| PO Vendor ID | Includes only selected vendors that supply daily operational needs, excluding other vendors from the reminder process. |
+|5| PO Receipt Qty = 0 | Includes only PO that the receipt quantity is 0. |
 <br>
 Shows the conditions used to filter Purchase Orders based on the defined business requirements.<br>
  <p align="center">
