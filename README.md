@@ -93,7 +93,7 @@ Shows how the selected tables are connected to retrieve the required Purchase Or
 |2| PO Promised Date < Today | Identifies Purchase Orders with a Promised Date later than today, based on the configured business rule.|
 |3| PO Created By = Stores | Limits the inquiry to Purchase Orders created by stores, as the reminder is specifically intended for store-created POs. |
 |4| PO Vendor ID | Includes only selected vendors that supply daily operational needs, excluding other vendors from the reminder process. |
-|5| PO Receipt Qty = 0 | Includes only PO that the receipt quantity is 0. |
+|5| PO Receipt Qty = 0 | Includes only PO that have not received any goods yet. |
 <br>
 Shows the conditions used to filter Purchase Orders based on the defined business requirements.<br>
  <p align="center">
@@ -200,13 +200,15 @@ The following screenshot shows an example of the automated email reminder sent t
 
 The following test scenarios can be used to validate the reminder process.
 
-| Test Scenario | Expected Result |
-|---|---|
-| Overdue PO with no GR | PO is identified and an email reminder is sent. |
-| PO that has not passed its promised date | No overdue reminder is sent. |
-| PO that has already been received | PO is excluded from the reminder. |
-| PO not created by a store | PO is excluded from the reminder. |
-| No matching PO records | No reminder email is generated. |
+| No | Test Scenario | Expected Result |
+|---|---|---|
+|1| PO with Expected Date within the current year, Promised Date has passed, created by a store, a declared VendorID, and Received Qty = 0. | PO appears in the GI and triggers an email reminder. |
+|2| PO with Expected Date from a previous year. | PO is excluded from the GI. |
+|3| PO with Promised Date later than today. | PO is excluded from the GI. |
+|4| PO created by a user other than a store. | PO is excluded from the GI. |
+|5| PO from a vendor outside the selected vendor list. | PO is excluded from the GI. |
+|6| PO with Received Qty greater than 0. |PO is excluded from the GI.|
+|7| No Purchase Orders match the configured conditions. | No email reminder is generated.|
 
 
 ## 8. Key Contributions
