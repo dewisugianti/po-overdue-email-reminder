@@ -2,6 +2,18 @@
 
 **Acumatica ERP | Generic Inquiry | Business Events | Automation Schedule | Email Notifications**
 
+## Table of Contents
+
+- [1. Project Overview](#1-project-overview)
+- [2. Business Background](#2-business-background)
+- [3. Business Requirements](#3-business-requirements)
+- [4. Proposed Solution](#4-proposed-solution)
+- [5. Technical Implementation](#5-technical-implementation)
+- [6. Email Notification Example](#6-email-notification-example)
+- [7. Functional Testing](#7-functional-testing)
+- [8. Key Contributions](#8-key-contributions)
+- [9. Project Outcome](#9-project-outcome)
+
 ## 1. Project Overview
 
 This project focuses on creating an automated email reminder for Purchase Orders (POs) created by stores that have not been received by their promised dates.
@@ -44,8 +56,8 @@ I designed an automated reminder process using several Acumatica features:
 The process runs automatically without requiring the Procurement team to manually check each Purchase Order and send reminders.
 
 ### Process Flowchart
-<p>
-  <img src="SystemProcessOutstandingPOs.png" alt="System Process Flow" width=400>  
+<p align="center">
+  <img src="diagrams/SystemProcessOutstandingPOs.png" alt="System Process Flow">  
 </p>
 
 ## 5. Technical Implementation
@@ -61,40 +73,42 @@ The inquiry is used as the data source for the Business Event.
 - Inquiry Name: Overdue Purchase Orders
 - Purpose: Retrieve overdue Purchase Orders that have not been received.
 
-1. Data Sources
+1. Data Sources <br>
 Shows the tables used as data sources for retrieving Purchase Order information.
-<p>
-  <img src="gi_datasources.jpeg" alt="GI Data Sources" width=300>  
+<p align="center">
+  <img src="screenshots/gi_datasources.jpeg" alt="GI Data Sources">  
 </p> 
 
-2. Table Relationships
+2. Table Relationships<br>
 Shows how the selected tables are connected to retrieve the required Purchase Order data.
-<p>
-  <img src="gi_tablerelations.jpeg" alt="GI Table Relations" width=300>
+<p align="center">
+  <img src="screenshots/gi_tablerelations.jpeg" alt="GI Table Relations">
 </p> 
 
-3. Conditions:
-- |---|---|---|
-  |1| PO Expected Date >= Start of the Year | Includes only Purchase Orders with an Expected Date within the current year. POs from previous years are excluded from the reminder process.|
-  |2| PO Promised Date < Today | Identifies Purchase Orders with a Promised Date later than today, based on the configured business rule.|
-  |3| PO Created By = Stores | Limits the inquiry to Purchase Orders created by stores, as the reminder is specifically intended for store-created POs. |
-  |4| PO Vendor ID | Includes only selected vendors that supply daily operational needs, excluding other vendors from the reminder process. |
-
-Shows the conditions used to filter Purchase Orders based on the defined business requirements.
- <p>
-  <img src="gi_conditions.jpeg" alt="GI Conditions">  
+3. Conditions:<br>
+   
+| No. | Condition | Business Purpose |
+|---|---|---|
+|1| PO Expected Date >= Start of the Year | Includes only Purchase Orders with an Expected Date within the current year. POs from previous years are excluded from the reminder process.|
+|2| PO Promised Date < Today | Identifies Purchase Orders with a Promised Date later than today, based on the configured business rule.|
+|3| PO Created By = Stores | Limits the inquiry to Purchase Orders created by stores, as the reminder is specifically intended for store-created POs. |
+|4| PO Vendor ID | Includes only selected vendors that supply daily operational needs, excluding other vendors from the reminder process. |
+<br>
+Shows the conditions used to filter Purchase Orders based on the defined business requirements.<br>
+ <p align="center">
+  <img src="screenshots/gi_conditions.jpeg" alt="GI Conditions">  
  </p> 
 
-4. Grouping
+4. Grouping <br>
 Shows how the inquiry data is grouped to organize the Purchase Order records.
-<p>
-  <img src="gi_grouping.jpeg" alt="GI Grouping">  
+<p align="center">
+  <img src="screenshots/gi_grouping.jpeg" alt="GI Grouping">  
  </p> 
  
-5. Result Grid
+5. Result Grid <br>
 Shows the final inquiry results, displaying Purchase Orders that match the configured conditions.
-<p>
-  <img src="gi_resultsgrid.jpeg" alt="GI Result Grid">  
+<p align="center">
+  <img src="screenshots/gi_resultsgrid.jpeg" alt="GI Result Grid">  
 </p> 
  
 ### 5.2 Business Event Configuration
@@ -109,15 +123,15 @@ The event is configured to trigger email notifications when matching Purchase Or
 - Event Type: Trigger By Schedule
 - Notification Method: Email
 
-1. Subscribers
+1. Subscribers <br>
    The Subscribers tab is used to link the Business Event with the Mail Template. This defines the email notification that will be sent when the event is triggered.
-   <p>
-      <img src="be_subscribers.jpeg" alt="Business Event Subscriber">  
+   <p align="center">
+      <img src="screenshots/be_subscribers.jpeg" alt="Business Event Subscriber">  
     </p> 
-2. Schedules
+2. Schedules <br>
    The Schedules tab is used to link the Business Event with the Automation Schedule, allowing the event to run automatically at a predefined time every day.
-   <p>
-      <img src="be_schedules.jpeg" alt="Business Event Schedules">  
+   <p align="center">
+      <img src="screenshots/be_schedules.jpeg" alt="Business Event Schedules">  
     </p> 
 
 ### 5.3 Automation Schedule Configuration
@@ -132,20 +146,20 @@ This allows Acumatica to check outstanding Purchase Orders regularly without man
 - Execution Time: Set Start & Stop Time 
 1. Details
    Shows the main Automation Schedule settings, including its name and configuration details.
-   <p>
-      <img src="AS_Details.jpeg" alt="Automation Schedule Details">  
+   <p align="center">
+      <img src="screenshots/AS_Details.jpeg" alt="Automation Schedule Details">  
     </p> 
     
 2. Schedule
    Shows the schedule settings, including the frequency and time when the reminder process runs automatically.
-    <p>
-      <img src="AS_Schedule.jpeg" alt="Automation Schedule Frequency">  
+    <p align="center">
+      <img src="screenshots/AS_Schedule.jpeg" alt="Automation Schedule Frequency">  
     </p> 
     
 3. Events
    Shows the Business Event linked to the Automation Schedule, allowing the reminder process to be triggered based on the configured schedule.
-    <p>
-      <img src="AS_events.jpeg" alt="Automation Schedule Events">  
+    <p align="center">
+      <img src="screenshots/AS_events.jpeg" alt="Automation Schedule Events">  
     </p> 
 
 ### 5.4 Mail Template Configuration
@@ -178,10 +192,10 @@ The template is linked to the Business Event so that the notification follows a 
 
 ## 6. Email Notification Example
 
-The following screenshot shows an example of the automated email reminder sent to stores for overdue Purchase Orders.
-![Email Notification](email-notification.jpeg)
+The following screenshot shows an example of the automated email reminder sent to stores for overdue Purchase Orders.<br>
+![Email Notification](screenshots/Email_notification.jpeg)
 
-## 8. Functional Testing
+## 7. Functional Testing
 
 The following test scenarios can be used to validate the reminder process.
 
@@ -194,7 +208,7 @@ The following test scenarios can be used to validate the reminder process.
 | No matching PO records | No reminder email is generated. |
 
 
-## 9. Key Contributions
+## 8. Key Contributions
 
 - Identified the need for automated reminders to help stores complete GR on time.
 - Created a Generic Inquiry to retrieve overdue Purchase Orders.
@@ -203,7 +217,7 @@ The following test scenarios can be used to validate the reminder process.
 - Created and linked Mail Templates for consistent email notifications.
 - Connected multiple Acumatica features into one automated reminder process.
 
-## 10. Project Outcome
+## 9. Project Outcome
 
 The solution provides an automated way to monitor overdue Purchase Orders and remind stores to complete GR on time.
 
@@ -214,6 +228,6 @@ It helps:
 - Support faster processing of vendor bills by Finance.
 - Improve visibility and follow-up on outstanding Purchase Orders.
 
-## 11. Disclaimer
+## Disclaimer
 
 All screenshots and examples in this repository are for demonstration purposes. Sensitive business information, including vendor details, transaction values, and internal data, has been removed or masked.
